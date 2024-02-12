@@ -105,8 +105,8 @@ export default function Header() {
                     </div>
 
                     <div className='hidden lg:flex items-center gap-10 order-2'>
-                        <Link to="#">Login</Link>
-                        <Link to="#" className='border border-[#2699fb] bg-[#2699fb] text-white py-2 p-2 rounded'>Get Started</Link>
+                        <Link to="/login">Login</Link>
+                        <Link to="/register" className='border border-[#2699fb] bg-[#2699fb] text-white py-2 p-2 rounded'>Get Started</Link>
                     </div>
   
                 </div>
