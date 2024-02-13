@@ -1,4 +1,5 @@
 import React , {useState} from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../Custom/Header';
 import { loginFields } from '../../constants/formFields';
 import Input from '../Custom/Input';
@@ -35,7 +36,6 @@ export default function Login() {
     dispatch(loginUser(loginState)).then((result) => {
       if(result.payload) {
         setLoginState(fieldsState);
-        alert('loggedin');
         navigate('/dashboard');
       }
     })
@@ -44,6 +44,7 @@ export default function Login() {
   return (
     <div className='w-full py-[100px] flex flex-col items-center'>
       <div>
+            <Link to="/">BACK TO HOME</Link>
             <Header
               heading="Login to your account"
               paragraph="Don't have an account yet? "

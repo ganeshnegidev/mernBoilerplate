@@ -1,9 +1,13 @@
 import React , {useState} from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { AiOutlineMenu , AiOutlineClose } from "react-icons/ai";
+import { useDispatch, useSelector } from 'react-redux';
+import { clearuser } from '../Store/UserSlice';
 
 export default function Header() {
-  const [menuToggle,setMenuToggle] = useState(false);  
+  const [menuToggle,setMenuToggle] = useState(false);
+  const user = useSelector(state => state.user);  
+  const dispatch = useDispatch();
   return (
     <>
         <header className='shadow sticky z-50 top-0'>
@@ -105,7 +109,13 @@ export default function Header() {
                     </div>
 
                     <div className='hidden lg:flex items-center gap-10 order-2'>
-                        <Link to="/login">Login</Link>
+                        {
+                            user?.isAuthenticated ?
+                            <button onClick={() => dispatch(clearuser())}>Logout</button>
+                            :
+                            <Link to="/login">Login</Link>
+                        }
+                        
                         <Link to="/register" className='border border-[#2699fb] bg-[#2699fb] text-white py-2 p-2 rounded'>Get Started</Link>
                     </div>
   
