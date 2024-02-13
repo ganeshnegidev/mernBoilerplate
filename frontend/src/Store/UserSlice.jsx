@@ -5,7 +5,7 @@ import axios from 'axios';
 export const loginUser = createAsyncThunk(
     'user/loginUser',
     async(userCredentials) => {
-        const request = await axios.post(`${hostname}/api/v1/auth/login`, userCredentials);
+        const request = await axios.post(`${hostname}/api/v1/users/login`, userCredentials);
         const response = await request.data.data;
         localStorage.setItem('user', JSON.stringify(response));
         return response;
@@ -17,7 +17,17 @@ const userSlice = createSlice({
     initialState: {
         loading: false,
         user: null,
-        error: null
+        error: null,
+        isAuthenticated: false
+    },
+    reducers: {
+      clearuser:(state) => {
+        state.user = null,
+        state.loading = false,
+        state.error = null,
+        state.isAuthenticated = false,
+        localStorage.clear();
+      }
     },
     extraReducers:(builder) => {
         builder
@@ -25,18 +35,28 @@ const userSlice = createSlice({
                 state.loading = true;
                 state.user = null;
                 state.error = null;
+                state.isAuthenticated = false;
             })
             .addCase(loginUser.fulfilled,(state,action) => {
                 state.loading = false;
                 state.user = action.payload;
                 state.error = null;
+                state.isAuthenticated = true;
             })
             .addCase(loginUser.rejected, (state,action) => {
                 state.loading = false;
                 state.user = null;
-                state.error = action.error.message;
+                if(action.error.message === "Request failed with status code 401") {
+                    state.error = "User does not exists";
+                } else if(action.error.message === "Request failed with status code 402") {
+                    state.error = "Invalid Credentials";
+                } else {
+                    state.error = action.error.message;
+                }
+                state.isAuthenticated = false;
             })
     }
 });
 
 export default userSlice.reducer;
+export const {clearuser} = userSlice.actions;

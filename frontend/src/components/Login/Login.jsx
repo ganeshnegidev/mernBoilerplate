@@ -34,9 +34,9 @@ export default function Login() {
   const authenticateUser = () =>{
     dispatch(loginUser(loginState)).then((result) => {
       if(result.payload) {
-        setEmail('');
-        setPassword('');
-        navigate('/');
+        setLoginState(fieldsState);
+        alert('loggedin');
+        navigate('/dashboard');
       }
     })
   }
