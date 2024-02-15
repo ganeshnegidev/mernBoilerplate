@@ -1,7 +1,19 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import passport from "passport";
+import session from 'express-session';
 const app = express()
+
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {secure: false, maxAge:60000}
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(cors({
     origin: process.env.CORS_ORIGIN,

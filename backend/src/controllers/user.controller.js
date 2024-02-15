@@ -4,6 +4,8 @@ import {User} from "../models/user.model.js";
 import {uploadOnCloudinary} from "../utils/cloudinary.js";
 import {ApiResponse} from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken";
+import passport from "passport";
+import FacebookStrategy from 'passport-facebook';
 
 const generateAccessAndRefreshTokens = async(userId) => {
   try {
@@ -307,6 +309,33 @@ const updateUserCoverImage = asyncHandler(async(req,res) => {
 res.status(200).json(new ApiResponse(200,user,"Cover image is updated successfully"))
 
 })
+
+const loginWithfb = asyncHandler(async (req,res) => {
+  passport.use(new FacebookStrategy({
+    clientID: "865535167935964",
+    clientSecret: "255e1728cb4bb63e10ffcda742a432b7",
+    callbackURL: "http://localhost:5000/auth/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    console.log("accessToken", accessToken);
+    console.log("refreshToken", refreshToken);
+    console.log("profile", profile);
+  }
+));
+})
+
+passport.serializeUser(function(user, cb) {
+  process.nextTick(function() {
+    cb(null, { id: user.id, username: user.username, name: user.name });
+  });
+});
+
+passport.deserializeUser(function(user, cb) {
+  process.nextTick(function() {
+    return cb(null, user);
+  });
+});
+
 
 
 
