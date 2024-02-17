@@ -2,13 +2,13 @@ import React from 'react'
 
 export default function Middle() {
   return (
-      <div className='max-w-[1240px] mx-auto my-10 p-2 md:grid grid-cols-2'>
+      <div className='max-w-[1240px] mx-auto p-2 md:grid grid-cols-2'>
           <div class="flex flex-wrap mt-0 -mx-3">
             <div className='col-span-1 md:w-[80%] text-left'>
               <div class="relative flex flex-col min-w-0 mt-32 break-words bg-transparent border-0 shadow-none rounded-2xl bg-clip-border">
                 <div class="p-6 pb-0 mb-0 bg-transparent border-b-0 rounded-t-2xl">
-                  <h3 class="relative z-10 font-bold text-transparent bg-gradient-to-tl from-blue-600 to-cyan-400 bg-clip-text">Welcome back</h3>
-                  <p class="mb-0">Enter your email and password to sign in</p>
+                  <h3 class="relative z-10 font-bold text-transparent bg-gradient-to-tl from-blue-600 to-cyan-400 bg-clip-text text-4xl">Welcome back</h3>
+                  <p class="mb-0">Create a new account</p>
                 </div>
                 <div class="flex-auto p-6">
                   <form role="form">
@@ -37,9 +37,9 @@ export default function Middle() {
                 </div>
               </div>
             </div>
-            <div className='z-10 col-span-1 flex flex-col justify-center'>
-              <div class="z-10 top-0 hidden w-3/5 h-full -mr-32 overflow-hidden -skew-x-10 -right-40 rounded-bl-xl md:block">
-                <div class="absolute inset-x-0 top-0 z-10 h-full -ml-16 bg-cover skew-x-10  bg-[url('https://xeyso.com/UI/public/assets/img/curved-images/curved6.jpg')]" style={{width:'45vw',height:'80vh', marginLeft:'auto', clipPath:'polygon(12% 0, 100% 0,100% 100%, 0 100%)'}}></div>
+            <div className='z-0 col-span-1 flex flex-col justify-center'>
+              <div class="z-0 top-0 hidden w-3/5 h-full -mr-32 overflow-hidden -skew-x-10 -right-40 rounded-bl-xl md:block">
+                <div class="absolute inset-x-0 top-0 z-0 h-full -ml-16 bg-cover skew-x-10  bg-[url('https://xeyso.com/UI/public/assets/img/curved-images/curved6.jpg')]" style={{width:'45vw',height:'70vh', marginLeft:'auto', clipPath:'polygon(12% 0, 100% 0,100% 100%, 0 100%)'}}></div>
               </div>
             </div>
           </div>
